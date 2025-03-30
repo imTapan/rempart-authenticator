@@ -1,7 +1,11 @@
 {
-  "name": "nuxt-app",
+  "name": "rempart-authentication",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
+  "author": {
+    "name": "imTapan"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
