@@ -10,7 +10,12 @@
       </div>
     </section>
     <div class="flex items-center justify-center mt-20">
-      <UModal title="Add New Authernication" size="sm" class="w-96">
+      <UModal
+        title="Add New Authernication"
+        description=""
+        size="sm"
+        class="w-96"
+      >
         <!-- <UButton label="Open" color="neutral" variant="subtle" /> -->
 
         <button
@@ -21,8 +26,15 @@
         </button>
         <template #body>
           <div class="">
-            <USelect v-model="selectedApp" value-key="name" :items="allApps" class="w-48" />
-            <DatePicker />
+            {{ allApps }}
+            <USelect
+              v-model="selectedApp"
+              value-key="name"
+              :items="allApps"
+              class="w-48"
+            />
+            <!-- {{ selectedDateTime }}
+            <input type="datetime-local" v-model="selectedDateTime" /> -->
           </div>
         </template>
       </UModal>
@@ -34,10 +46,17 @@
 const authList = [];
 
 const allApps = ref([]);
-const selectedApp = ref(null);
 
-const { data } = await useFetch("/api/applications");
-allApps.value = data;
+const selectedApp = ref("");
+const selectedDateTime = ref(null);
 
+async function fetchApps() {
+  const { data } = await useFetch("/api/applications");
+  data.value.forEach((item) => {
+    console.log("dataaa", item);
+  });
+  allApps.value = [...data.value];
+}
+fetchApps();
 function openAuthModal() {}
 </script>
