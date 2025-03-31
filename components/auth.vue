@@ -93,7 +93,7 @@ const authModal = ref(false);
 const selectedApp = ref(null);
 const isLoading = ref(true);
 const selectedDateTime = ref(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
-const cookieDomain = "netlify.app";
+const cookieDomain = ".netlify.app";
 
 const formattedDateTime = computed({
   get() {
@@ -191,6 +191,7 @@ function newAuthenticate() {
   const demoCookie = useCookie(selectedApp.value, {
     expires: selectedDateTime.value,
     domain: cookieDomain,
+    sameSite: "None",
   });
   const token = generateToken();
   demoCookie.value = token;
@@ -210,6 +211,7 @@ function updateAuthList() {
     allApps.forEach((app, index) => {
       const cookie = useCookie(app.value, {
         domain: cookieDomain,
+        sameSite: "None",
       });
 
       if (cookie.value) {
@@ -230,6 +232,7 @@ function deleteApp(data) {
   if (!app) return null;
   const cookie = useCookie(app.value, {
     domain: cookieDomain,
+    sameSite: "None",
   });
   cookie.value = null;
   updateAuthList();
