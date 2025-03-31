@@ -191,6 +191,7 @@ function newAuthenticate() {
   const demoCookie = useCookie(selectedApp.value, {
     expires: selectedDateTime.value,
     domain: cookieDomain,
+    secure: true,
     sameSite: "None",
   });
   const token = generateToken();
@@ -211,6 +212,7 @@ function updateAuthList() {
     allApps.forEach((app, index) => {
       const cookie = useCookie(app.value, {
         domain: cookieDomain,
+        secure: true,
         sameSite: "None",
       });
 
@@ -232,6 +234,7 @@ function deleteApp(data) {
   if (!app) return null;
   const cookie = useCookie(app.value, {
     domain: cookieDomain,
+    secure: true,
     sameSite: "None",
   });
   cookie.value = null;
