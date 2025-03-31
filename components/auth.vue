@@ -12,12 +12,10 @@
     <div class="flex items-center justify-center mt-20">
       <UModal
         title="Add New Authernication"
-        description=""
+        description="select will modify if exists"
         size="sm"
         class="w-96"
       >
-        <!-- <UButton label="Open" color="neutral" variant="subtle" /> -->
-
         <button
           class="mx-auto bg-gray-200 px-3 py-2 cursor-pointer hover:bg-gray-300 text-gray-800 font-semibold text-lg"
           @click="openAuthModal"
@@ -25,16 +23,29 @@
           Authenticate me
         </button>
         <template #body>
-          <div class="">
-            {{ allApps }}
+          <div
+            class="flex items-center justify-around gap-2 flex-col md:flex-row"
+          >
             <USelect
               v-model="selectedApp"
-              value-key="name"
               :items="allApps"
               class="w-48"
+              placeholder="Please Select App"
             />
-            <!-- {{ selectedDateTime }}
-            <input type="datetime-local" v-model="selectedDateTime" /> -->
+            <input
+              type="datetime-local"
+              v-model="selectedDateTime"
+              class="border rounded h-8 border-gray-400/50 text-sm px-2"
+            />
+          </div>
+          {{ selectedDateTime }}
+          <div class="flex items-center justify-center">
+            <button
+              @click="newAuthenticate"
+              class="mt-5 w-40 bg-gray-200 px-3 py-2 cursor-pointer hover:bg-gray-300 text-gray-800 font-semibold text-lg"
+            >
+              Add
+            </button>
           </div>
         </template>
       </UModal>
@@ -43,20 +54,21 @@
 </template>
 
 <script setup>
+import { format } from "date-fns";
+
 const authList = [];
 
-const allApps = ref([]);
+const selectedApp = ref(null);
+const selectedDateTime = ref(new Date());
 
-const selectedApp = ref("");
-const selectedDateTime = ref(null);
+const { data: apps } = await useFetch("/api/applications");
+const allApps = toRaw(apps.value);
 
-async function fetchApps() {
-  const { data } = await useFetch("/api/applications");
-  data.value.forEach((item) => {
-    console.log("dataaa", item);
-  });
-  allApps.value = [...data.value];
+const demoCookie = useCookie("demoCookie");
+
+function newAuthenticate() {
+  console.log("newAuthenticate", selectedApp.value, selectedDateTime.value);
 }
-fetchApps();
+
 function openAuthModal() {}
 </script>

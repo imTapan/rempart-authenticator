@@ -1,12 +1,12 @@
 const allApps = [
   {
-    name: "Rempart Content",
-    code: "rempcontent",
+    label: "Rempart Content",
+    value: "rempcontent",
     site: "https://rempart-content.netlify.app",
   },
-  { name: "Rempart Prompts", code: "rempprompt" },
-  { name: "Rempart", code: "rempart" },
-  { name: "Rempart Package", code: "remppackage" },
+  { label: "Rempart Prompts", value: "rempprompt" },
+  { label: "Rempart", value: "rempart" },
+  { label: "Rempart Package", value: "remppackage" },
 ];
 
 export default defineEventHandler((event) => {
