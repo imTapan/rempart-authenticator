@@ -160,7 +160,6 @@ const columns = [
 ];
 
 // Fetch the list of applications from the API
-const { data: apps } = await useFetch("/api/applications");
 const allApps = [
   {
     label: "Rempart Content",
