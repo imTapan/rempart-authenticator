@@ -161,7 +161,16 @@ const columns = [
 
 // Fetch the list of applications from the API
 const { data: apps } = await useFetch("/api/applications");
-const allApps = toRaw(apps.value);
+const allApps = [
+  {
+    label: "Rempart Content",
+    value: "rempcontent",
+    site: "https://rempart-content.netlify.app",
+  },
+  { label: "Rempart Prompts", value: "rempprompt" },
+  { label: "Rempart", value: "rempart" },
+  { label: "Rempart Package", value: "remppackage" },
+];
 
 function newAuthenticate() {
   if (!selectedApp.value || !selectedDateTime.value) {
