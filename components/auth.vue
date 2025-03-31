@@ -199,7 +199,7 @@ function updateAuthList() {
   isLoading.value = true;
   authList.value = [];
   setTimeout(() => {
-    allApps.value.forEach((app, index) => {
+    allApps.forEach((app, index) => {
       const cookie = useCookie(app.value, {
         domain: cookieDomain,
       });
