@@ -93,7 +93,7 @@ const authModal = ref(false);
 const selectedApp = ref(null);
 const isLoading = ref(true);
 const selectedDateTime = ref(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
-const cookieDomain = ".netlify.app";
+const cookieDomain = "netlify.app";
 
 const formattedDateTime = computed({
   get() {
